@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  private cookie_token: string = "";
+  private cookie_username: string = "";
+
+  constructor(private cookieService: CookieService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  setCookie() {
+    this.cookieService.set('token', this.cookie_token);
+    this.cookieService.set('username', this.cookie_username);
+  }
+
+  login(username: string, password: string) {
+
   }
 
 }
