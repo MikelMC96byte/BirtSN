@@ -1,1 +1,50 @@
-<p>profile works!</p>
+<app-navigation-bar></app-navigation-bar>
+
+<div class="">
+    <div class="row rounded text-light bg-dark p-3 mb-3 text-center mx-1">
+        <div class="row">
+            <h5>Perfil</h5>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row text-center">
+                    Usuario:
+                </div>
+                <div class="row text-center">
+                    {{userInfo.username}}
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    Nombre:
+                </div>
+                <div class="row">
+                    {{userInfo.name}}
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    Fecha de nacimiento:
+                </div>
+                <div class="row">
+                    {{userInfo.birthday}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="loggedUsername == profileUsername">
+        <div class="col">
+            <button class="btn rounded-pill text-light bg-dark py-1 text-center custom-fill">
+                Editar perfil
+            </button>
+        </div>
+        <div class="col">
+            <button class="btn rounded-pill text-light bg-dark py-1 text-center custom-fill" (click)="logout()">
+                Cerrar sesión
+            </button>
+        </div>
+    </div>
+    <div class="">
+        
+    </div>
+</div>

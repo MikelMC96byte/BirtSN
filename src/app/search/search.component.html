@@ -1,0 +1,26 @@
+
+<!-- Search form -->
+<div class="input-group w-auto my-auto d-none d-sm-flex " >
+    <input
+    autocomplete="off"
+    type="search"
+    class="form-control rounded rounded-pill px-3"
+    placeholder="Search..."
+    [(ngModel)]="searchInput"
+    (input)="search()"
+
+    />
+</div>
+<div class="dropdown">
+
+</div>
+<ul 
+class="dropdown-menu dropdown-menu-end" 
+[ngClass]="{'show': searchResults.length > 0}"
+style="list-style-type: none;" >
+    <li *ngFor="let user of searchResults">
+        <span class="dropdown-item pe-auto" (click)="goToProfile(user.username)">
+            {{user.username}}
+        </span>
+    </li>
+</ul>
