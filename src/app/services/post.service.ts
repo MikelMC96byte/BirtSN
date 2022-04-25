@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { BASE_API_URL } from "../config/config";
-import { User } from "../models/user";
+import { Post } from "../models/post";
 
 @Injectable()
-export class UserService {
+export class PostService {
 
     public url : string;
 
@@ -14,24 +14,23 @@ export class UserService {
         this.url = BASE_API_URL;
     }
 
-    public readById(id: number) : Observable<any> {
+    public read(id: number) : Observable<any> {
         let headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
-        console.log(headers);
-        return this._http.get(this.url + "users/" + id, { headers: headers });
+        return this._http.get(this.url + "posts/" + id, { headers: headers });
     }
 
-    public read(username: string) : Observable<any> {
+    public readAll() : Observable<any> {
         let headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
-        console.log(headers);
-        return this._http.get(this.url + "users/" + username, { headers: headers });
+        return this._http.get(this.url + "posts", { headers: headers });
     }
 
+    /*
     public update(user: User) : Observable<any> {
         let headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -56,4 +55,6 @@ export class UserService {
         console.log(headers);
         return this._http.delete(this.url + "me", { headers: headers });
     }
+
+    */
 }

@@ -1,2 +1,15 @@
-<app-navigation-bar></app-navigation-bar>
-<p>post works!</p>
+
+
+<div class="card text-white bg-dark mb-3 w-100" style="max-width: 18rem;">
+    <div class="card-header" *ngIf="postUser != null; else disabledUser">
+        @{{postUser.username}}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{postData.header}}</h5>
+        <p class="card-text">{{postData.body}}</p>
+    </div>
+</div>
+
+<ng-template #disabledUser>
+    @Usuario no disponible
+</ng-template>

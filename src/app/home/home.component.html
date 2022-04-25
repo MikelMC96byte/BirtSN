@@ -1,2 +1,2 @@
 <app-navigation-bar></app-navigation-bar>
-<p>home works!</p>
+<app-post *ngFor="let post of postList" [postId]="post.id"></app-post>

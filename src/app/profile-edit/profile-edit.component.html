@@ -1,1 +1,78 @@
-<p>profile-edit works!</p>
+<app-navigation-bar></app-navigation-bar>
+
+<div class="">
+    <form #profileEditForm (submit)="editProfile()">
+        <div class="row rounded text-light bg-dark p-3 mb-3 text-center mx-1">
+            <div class="row">
+                <h5>Perfil</h5>
+            </div>
+            <div class="row">
+                <div class="col m-1">
+                    <div class="row">
+                        <label class="form-label" for="nombre">Usuario:</label>
+                    </div>
+                    <div class="row">
+                        <input 
+                            type="text" 
+                            name="nombre" 
+                            id="nombre" 
+                            class="form-control" 
+                            value="{{userInfo.username}}"
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div class="col m-1">
+                    <div class="row">
+                        <label class="form-label" for="nombre">Nombre:</label>
+                    </div>
+                    <div class="row">
+                        <input 
+                            type="text" 
+                            name="nombre" 
+                            id="nombre" 
+                            class="form-control" 
+                            [(ngModel)]="userInfo.name"
+                            #nombre="ngModel" 
+                            value="{{userInfo.name}}"
+                        />
+                    </div>
+                </div>
+                <div class="col m-1">
+                    <div class="row">
+                        <label class="form-label" for="birthday">Fecha de nacimiento:</label>
+                    </div>
+                    <div class="row">
+                        <input 
+                            type="date" 
+                            name="birthday" 
+                            id="birthday" 
+                            class="form-control" 
+                            [(ngModel)]="userInfo.birthday"
+                            #birthday="ngModel" 
+                            value="{{userInfo.birthday}}"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success rounded-pill text-light py-1 text-center custom-fill" type="submit" >
+                    GUARDAR
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark rounded-pill text-light py-1 text-center custom-fill" (click)="cancel()" >
+                    CANCELAR
+                </button>
+            </div>
+        </div>
+
+    </form>
+    
+    
+    <div class="">
+        
+    </div>
+</div>

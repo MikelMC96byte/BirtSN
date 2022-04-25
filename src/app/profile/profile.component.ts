@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -21,9 +22,7 @@ export class ProfileComponent implements OnInit {
     private _authService : AuthService, 
     private _route: ActivatedRoute,
     private _userService : UserService
-  ) { 
-    
-  }
+  ) { }
 
   ngOnInit(): void {
     if(!this._authService.isLoggedIn()) {
@@ -45,8 +44,48 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  logout() {
+  editProfile() : void {
+    this._router.navigate(['/users/' + this.loggedUsername + '/edit']);
+  }
+
+  logout() : void {
     this._authService.logout();
-    this._router.navigate(['/login']);
+  }
+
+  deleteAccount() : void{
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borrar!'
+
+    }).then((result) => {
+      if (result.value) {
+        this._userService.delete().subscribe({
+          next: (res) => {
+            console.log(res);
+            Swal.fire(
+              '¡Borrado!',
+              'Tu cuenta ha sido borrada.',
+              'success'
+            );
+            this._authService.logout();
+          },
+          error: (err) => {
+            console.error(err);
+            Swal.fire({
+              title: 'Error',
+              text: `${err.error.detail}`,
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+          }
+        });
+      }
+    });
+
   }
 }

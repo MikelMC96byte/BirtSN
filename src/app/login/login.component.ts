@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() : void {
-    console.log(this.loginData);
     this._authService.login(this.loginData).subscribe({
       next: (res) => {
         console.log(res);
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
         console.error(err);
         Swal.fire({
           title: 'Error',
-          text: `Usuario o contraseña incorrectos`,
+          text: err.error.detail == "Disabled user" ? "El usuario está deshabilitado" : "Usuario o contraseña incorrectos",
           icon: 'error',
           confirmButtonText: 'Aceptar'
         });

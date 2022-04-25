@@ -32,18 +32,28 @@
             </div>
         </div>
     </div>
-    <div class="row" *ngIf="loggedUsername == profileUsername">
-        <div class="col">
-            <button class="btn rounded-pill text-light bg-dark py-1 text-center custom-fill">
-                Editar perfil
-            </button>
+    <div *ngIf="loggedUsername == profileUsername">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-dark rounded-pill text-light py-1 text-center custom-fill" (click)="editProfile()">
+                    Editar perfil
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark rounded-pill text-light py-1 text-center custom-fill" (click)="logout()">
+                    Cerrar sesión
+                </button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn rounded-pill text-light bg-dark py-1 text-center custom-fill" (click)="logout()">
-                Cerrar sesión
-            </button>
+        <div class="row my-3">
+            <div class="col">
+                <button class="btn btn-danger rounded-pill text-light py-1 text-center custom-fill" (click)="deleteAccount()">
+                    <i class="fa-solid fa-triangle-exclamation"></i><strong>BORRAR PERFIL</strong><i class="fa-solid fa-triangle-exclamation"></i>
+                </button>
+            </div>
         </div>
     </div>
+    
     <div class="">
         
     </div>
