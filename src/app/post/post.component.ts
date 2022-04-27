@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
@@ -49,12 +50,36 @@ export class PostComponent implements OnInit {
     })
   }
 
-  userIsNull() : boolean {
-    return this.postUser == null;
+  openFullPost() : void {
+    this._router.navigate(['/posts/' + this.postId]);
   }
 
-  openFullPost() : void {
-    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this._router.navigate(['/posts/' + this.postId]);
+  openUserProfile() : void {
+    if(this.postUser != null) {
+      this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this._router.navigate(['/users/' + this.postUser.username]);
+    }
+  }
+
+  deletePost() : void {
+    this._postService.delete(this.postId).subscribe({
+      next: (res) => {
+        console.log(res);
+        Swal.fire({
+          title: '¡Post eliminado!',
+          text: 'El post ha sido eliminado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        }).then((result) => {
+          // Redirec to home with refresh
+          this._router.navigate(['/posts/' + this.postId], {skipLocationChange: true}).then(() => {
+            this._router.navigate(['/home'])
+          });
+        });
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
   }
 }

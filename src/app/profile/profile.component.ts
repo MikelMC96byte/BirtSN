@@ -4,24 +4,27 @@ import Swal from 'sweetalert2';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [AuthService, UserService]
+  providers: [AuthService, UserService, PostService]
 })
 export class ProfileComponent implements OnInit {
 
   public loggedUsername : any = localStorage.getItem('username');
   public profileUsername : string = "";
   public userInfo : User = new User(0, "", "", "");
+  public posts : any = [];
 
   constructor(
     private _router: Router, 
     private _authService : AuthService, 
     private _route: ActivatedRoute,
-    private _userService : UserService
+    private _userService : UserService,
+    private _postService : PostService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +44,17 @@ export class ProfileComponent implements OnInit {
       error: (err) => {
         console.error(err);
       }
-    })
+    });
+
+    this._postService.readByUser(this.profileUsername).subscribe({
+      next: (res) => {
+        this.posts = res;
+        console.log(this.posts);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
   editProfile() : void {

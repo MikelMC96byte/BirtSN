@@ -2,7 +2,7 @@
 
 <div class="card text-white bg-dark mb-3">
     <div class="card-header" *ngIf="postUser != null; else disabledUser">
-        <i>@{{postUser.username}}</i>
+        <i class="custom-mouseover" (click)="openUserProfile()">@{{postUser.username}}</i>
     </div>
     <div class="card-body custom-mouseover" (click)="openFullPost()">
         <h5 class="card-title">{{postData.header}}</h5>
@@ -12,7 +12,7 @@
         <button class="btn btn-dark"><i class="fa-solid fa-comment"></i></button>
         <span *ngIf="postUser != null && loggedUsername == postUser.username">
             <button class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="btn btn-dark"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-dark" (click)="deletePost()"><i class="fa-solid fa-trash-can"></i></button>
         </span>
     </div>
 </div>

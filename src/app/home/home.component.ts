@@ -38,4 +38,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  newPost() : void {
+    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this._router.navigate(['/new-post']);
+  }
 }
