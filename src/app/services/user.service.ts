@@ -11,7 +11,7 @@ export class UserService {
     public url : string;
 
     constructor(public _http: HttpClient) {
-        this.url = BASE_API_URL;
+        this.url = BASE_API_URL + "users";
     }
 
     public readById(id: number) : Observable<any> {
@@ -20,7 +20,7 @@ export class UserService {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         console.log(headers);
-        return this._http.get(this.url + "users/" + id, { headers: headers });
+        return this._http.get(this.url + "/id/" + id, { headers: headers });
     }
 
     public read(username: string) : Observable<any> {
@@ -29,7 +29,7 @@ export class UserService {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         console.log(headers);
-        return this._http.get(this.url + "users/" + username, { headers: headers });
+        return this._http.get(this.url + "/" + username, { headers: headers });
     }
 
     public update(user: User) : Observable<any> {
@@ -39,7 +39,7 @@ export class UserService {
         });
         console.log(headers);
         return this._http.put(
-            this.url + "me", {
+            this.url, {
                 username: user.username,
                 name: user.name,
                 birthday: user.birthday
@@ -54,6 +54,6 @@ export class UserService {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         console.log(headers);
-        return this._http.delete(this.url + "me", { headers: headers });
+        return this._http.delete(this.url, { headers: headers });
     }
 }

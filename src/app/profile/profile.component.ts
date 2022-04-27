@@ -71,8 +71,9 @@ export class ProfileComponent implements OnInit {
               '¡Borrado!',
               'Tu cuenta ha sido borrada.',
               'success'
-            );
-            this._authService.logout();
+            ).then(() => {
+              this._authService.logout();
+            });
           },
           error: (err) => {
             console.error(err);

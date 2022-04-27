@@ -52,4 +52,9 @@ export class PostComponent implements OnInit {
   userIsNull() : boolean {
     return this.postUser == null;
   }
+
+  openFullPost() : void {
+    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this._router.navigate(['/posts/' + this.postId]);
+  }
 }

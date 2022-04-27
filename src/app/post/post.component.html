@@ -1,15 +1,24 @@
 
 
-<div class="card text-white bg-dark mb-3 w-100" style="max-width: 18rem;">
+<div class="card text-white bg-dark mb-3">
     <div class="card-header" *ngIf="postUser != null; else disabledUser">
-        @{{postUser.username}}
+        <i>@{{postUser.username}}</i>
     </div>
-    <div class="card-body">
+    <div class="card-body custom-mouseover" (click)="openFullPost()">
         <h5 class="card-title">{{postData.header}}</h5>
         <p class="card-text">{{postData.body}}</p>
+    </div>
+    <div class="card-footer text-muted">
+        <button class="btn btn-dark"><i class="fa-solid fa-comment"></i></button>
+        <span *ngIf="postUser != null && loggedUsername == postUser.username">
+            <button class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-dark"><i class="fa-solid fa-trash-can"></i></button>
+        </span>
     </div>
 </div>
 
 <ng-template #disabledUser>
-    @Usuario no disponible
+    <div class="card-header">
+        <i>@Usuario no disponible</i>
+    </div>
 </ng-template>
