@@ -13,3 +13,12 @@
 .custom-fill {
     width: 100%;
 }
+
+.custom-mouseover {
+    cursor: pointer;
+}
+
+.custom-link {
+    color: #fff;
+    text-decoration: none;
+}

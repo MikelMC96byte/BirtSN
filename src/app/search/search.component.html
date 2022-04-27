@@ -11,15 +11,13 @@
 
     />
 </div>
-<div class="dropdown">
-
-</div>
+<div class="dropdown"></div>
 <ul 
 class="dropdown-menu dropdown-menu-end" 
 [ngClass]="{'show': searchResults.length > 0}"
 style="list-style-type: none;" >
     <li *ngFor="let user of searchResults">
-        <span class="dropdown-item pe-auto" (click)="goToProfile(user.username)">
+        <span class="dropdown-item pe-auto custom-mouseover" (click)="goToProfile(user.username)">
             {{user.username}}
         </span>
     </li>

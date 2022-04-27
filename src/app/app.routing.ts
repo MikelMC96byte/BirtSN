@@ -10,6 +10,7 @@ import { PostComponent } from "./post/post.component";
 import { CommentComponent } from "./comment/comment.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { ProfileEditComponent } from "./profile-edit/profile-edit.component";
+import { PostFullViewComponent } from "./post-full-view/post-full-view.component";
 
 const appRoutes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -19,8 +20,7 @@ const appRoutes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "users/:username", component: ProfileComponent },
     { path: "users/:username/edit", component: ProfileEditComponent },
-    { path: "posts/:id", component: PostComponent },
-    { path: "comment/:id", component: CommentComponent },
+    { path: "posts/:id", component: PostFullViewComponent },
     { path : "**", redirectTo: "home" }
 ];
 

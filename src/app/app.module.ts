@@ -17,6 +17,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { SearchComponent } from './search/search.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { PostFullViewComponent } from './post-full-view/post-full-view.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     LogoutComponent,
     SearchComponent,
     ProfilePreviewComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    PostFullViewComponent
   ],
   imports: [
     BrowserModule,
