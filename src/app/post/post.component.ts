@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Post } from '../models/post';
@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
 
   public loggedUsername : any = localStorage.getItem('username');
   @Input() postId : number = 0;
+  @Output() deletedPost: EventEmitter<Post> = new EventEmitter<Post>();
   public postData : Post = new Post(0, "", "", 0);
   public postUser : User|null = new User(0, "", "", "");
 
@@ -62,24 +63,27 @@ export class PostComponent implements OnInit {
   }
 
   deletePost() : void {
-    this._postService.delete(this.postId).subscribe({
-      next: (res) => {
-        console.log(res);
-        Swal.fire({
-          title: '¡Post eliminado!',
-          text: 'El post ha sido eliminado correctamente.',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        }).then((result) => {
-          // Redirec to home with refresh
-          this._router.navigate(['/posts/' + this.postId], {skipLocationChange: true}).then(() => {
-            this._router.navigate(['/home'])
-          });
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        this._postService.delete(this.postId).subscribe({
+          next: (res) => {
+            this.deletedPost.emit(this.postData);
+            console.log(res);
+          },
+          error: (err) => {
+            console.error(err);
+          }
         });
-      },
-      error: (err) => {
-        console.error(err);
       }
-    })
+    });
   }
 }

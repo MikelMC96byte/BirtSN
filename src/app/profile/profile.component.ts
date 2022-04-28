@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
   public loggedUsername : any = localStorage.getItem('username');
   public profileUsername : string = "";
   public userInfo : User = new User(0, "", "", "");
-  public posts : any = [];
+  public posts : Array<Post> = [];
 
   constructor(
     private _router: Router, 
@@ -30,31 +31,31 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     if(!this._authService.isLoggedIn()) {
       this._router.navigate(['/login']);
+    } else {
+      this._route.params.subscribe(params => {
+        this.profileUsername = params['username'];
+      });
+  
+      this._userService.read(this.profileUsername).subscribe({
+        next: (res) => {
+          this.userInfo = res;
+          console.log(this.userInfo);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+  
+      this._postService.readByUser(this.profileUsername).subscribe({
+        next: (res) => {
+          this.posts = res;
+          console.log(this.posts);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
     }
-
-    this._route.params.subscribe(params => {
-      this.profileUsername = params['username'];
-    });
-
-    this._userService.read(this.profileUsername).subscribe({
-      next: (res) => {
-        this.userInfo = res;
-        console.log(this.userInfo);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-
-    this._postService.readByUser(this.profileUsername).subscribe({
-      next: (res) => {
-        this.posts = res;
-        console.log(this.posts);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
   }
 
   editProfile() : void {
@@ -100,6 +101,9 @@ export class ProfileComponent implements OnInit {
         });
       }
     });
+  }
 
+  deletePost(post : Post) : void {
+    this.posts = this.posts.filter(p => p.id !== post.id);
   }
 }

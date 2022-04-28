@@ -1,2 +1,2 @@
 <app-navigation-bar></app-navigation-bar>
-<app-post [postId]="id"></app-post>
+<app-post [postId]="id" (deletedPost)="deleteSelf($event)"></app-post>

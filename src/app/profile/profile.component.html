@@ -60,5 +60,5 @@
 </div>
 <!-- POSTS -->
 <div>
-    <app-post *ngFor="let post of posts" [postId]="post.id"></app-post>
+    <app-post *ngFor="let post of posts" [postId]="post.id" (deletedPost)="deletePost($event)"></app-post>
 </div>

@@ -42,4 +42,8 @@ export class HomeComponent implements OnInit {
     this._router.routeReuseStrategy.shouldReuseRoute = () => false;
     this._router.navigate(['/new-post']);
   }
+
+  deletePostFromList(post : Post) : void {
+    this.postList = this.postList.filter(p => p.id != post.id);
+  }
 }
