@@ -20,22 +20,22 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     if(!this._authService.isLoggedIn()) {
       this._router.navigate(['/login']);
+    } else {
+      this._postService.readAll().subscribe({
+        next: (res) => {
+          this.postList = res;
+          console.log(this.postList);
+        },
+        error: (err) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Parece que estamos teniendo problemas. Por favor, inténtelo de nuevo más tarde.',
+          });
+          console.error(err);
+        }
+      });
     }
-
-    this._postService.readAll().subscribe({
-      next: (res) => {
-        this.postList = res;
-        console.log(this.postList);
-      },
-      error: (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Parece que estamos teniendo problemas. Por favor, inténtelo de nuevo más tarde.',
-        });
-        console.error(err);
-      }
-    });
   }
 
   newPost() : void {

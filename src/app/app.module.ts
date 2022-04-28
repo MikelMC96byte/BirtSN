@@ -13,7 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LogoutComponent } from './logout/logout.component';
 import { SearchComponent } from './search/search.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
@@ -30,7 +29,6 @@ import { PostNewComponent } from './post-new/post-new.component';
     RegisterComponent,
     HomeComponent,
     NavigationBarComponent,
-    LogoutComponent,
     SearchComponent,
     ProfilePreviewComponent,
     ProfileEditComponent,

@@ -3,35 +3,40 @@ import Swal from 'sweetalert2';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css'],
-  providers: [UserService]
+  providers: [UserService, AuthService]
 })
 export class ProfileEditComponent implements OnInit {
 
   public loggedUsername : any = localStorage.getItem('username');
   public userInfo : User = new User(0, "", "", "");
 
-  constructor(private _userService : UserService, private _router: Router) { }
+  constructor(private _userService : UserService, private _router: Router, private _authService : AuthService) { }
 
   ngOnInit(): void {
-    this._userService.read(this.loggedUsername).subscribe({
-      next: (res) => {
-        this.userInfo = res;
-        console.log(this.userInfo);
-      },
-      error: (err) => {
-        console.error(err);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: '¡Algo salió mal!',
-        });
-      }
-    })
+    if(!this._authService.isLoggedIn()) {
+      this._router.navigate(['/login']);
+    } else {
+      this._userService.read(this.loggedUsername).subscribe({
+        next: (res) => {
+          this.userInfo = res;
+          console.log(this.userInfo);
+        },
+        error: (err) => {
+          console.error(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '¡Algo salió mal!',
+          });
+        }
+      })
+    }
   }
 
   editProfile() : void {

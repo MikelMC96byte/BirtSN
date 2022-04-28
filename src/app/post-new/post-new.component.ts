@@ -40,7 +40,7 @@ export class PostNewComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Ok'
         }).then((result) => {
-          this._router.navigate(['/users', this.currentUsername]);
+          this._router.navigate(['/home']);
         });
       },
       error: (err) => {

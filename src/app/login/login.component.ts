@@ -15,14 +15,15 @@ import {currentRoute} from '../config/config';
 export class LoginComponent implements OnInit {
 
   public loginData : Login;
-  public route: string = currentRoute;
 
   constructor(private _router: Router , private _authService: AuthService) {
     this.loginData = new Login("", "");
   }
 
   ngOnInit(): void {
-    this.route = this._router.url;
+    if(this._authService.isLoggedIn()) {
+      this._router.navigate(['/home']);
+    }
   }
 
   login() : void {
