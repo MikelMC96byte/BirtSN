@@ -7,7 +7,8 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-post-full-view',
   templateUrl: './post-full-view.component.html',
-  styleUrls: ['./post-full-view.component.css']
+  styleUrls: ['./post-full-view.component.css'],
+  providers: [AuthService]
 })
 export class PostFullViewComponent implements OnInit {
 
