@@ -1,1 +1,58 @@
-<p>comment works!</p>
+<div class="card text-white bg-dark mb-2">
+    <div class="d-flex card-header">
+        <div class="me-auto" *ngIf="commentUser != null; else disabledUser">
+            <i class="custom-mouseover" (click)="openUserProfile()">@{{commentUser.username}}</i>
+        </div>
+        <span *ngIf="commentUser != null && loggedUsername == commentUser.username">
+            <button class="btn btn-dark mx-1" (click)="editComment()" ><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-dark mx-1" (click)="deleteComment()"><i class="fa-solid fa-trash-can"></i></button>
+        </span>
+    </div>
+    
+    <div class="card-body" *ngIf="!edittingComment; else editting">
+        <p class="card-text">{{commentData.text}}</p>
+    </div>
+    <!--
+        <div class="card-footer text-muted">
+            <button class="btn btn-dark mx-1"><i class="fa-solid fa-comment"></i></button>
+            
+        </div>
+    -->
+</div>
+
+<ng-template #disabledUser>
+    <div class="card-header">
+        <i>@Usuario no encontrado</i>
+    </div>
+</ng-template>
+
+<ng-template #editting>
+    <form class="p-3" (submit)="update()">
+        <div class="row mb-3">
+            <div class="col">
+                <textarea 
+                    type="text" 
+                    name="text"
+                    id="text" 
+                    class="form-control" 
+                    [(ngModel)]="commentData.text"
+                    #text="ngModel"
+                >
+                {{commentData.text}}
+                </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success rounded-pill text-light py-1 text-center custom-fill" type="submit" >
+                    GUARDAR
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary rounded-pill text-light py-1 text-center custom-fill" (click)="cancel()" >
+                    CANCELAR
+                </button>
+            </div>
+        </div>
+    </form>
+</ng-template>
