@@ -1,11 +1,11 @@
-<div class="card text-white bg-dark mb-2">
+<div class="card text-white  mb-2 custom-comments-bg-color">
     <div class="d-flex card-header">
         <div class="me-auto" *ngIf="commentUser != null; else disabledUser">
             <i class="custom-mouseover" (click)="openUserProfile()">@{{commentUser.username}}</i>
         </div>
         <span *ngIf="commentUser != null && loggedUsername == commentUser.username">
-            <button class="btn btn-dark mx-1" (click)="editComment()" ><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="btn btn-dark mx-1" (click)="deleteComment()"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-dark mx-1 custom-comments-bg-color" (click)="editComment()" ><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-dark mx-1 custom-comments-bg-color" (click)="deleteComment()"><i class="fa-solid fa-trash-can"></i></button>
         </span>
     </div>
     
