@@ -10,7 +10,7 @@ export class Comment {
 
 export class NewComment {
     constructor(
-        public comment: string,
+        public text: string,
         public comment_id: number|null,
     ) {}
 }

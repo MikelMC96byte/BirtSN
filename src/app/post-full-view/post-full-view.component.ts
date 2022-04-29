@@ -31,14 +31,7 @@ export class PostFullViewComponent implements OnInit {
     } else {
       this._route.params.subscribe(params => {
         this.id = params['id'];
-        this._commentService.readByPost(this.id).subscribe({
-          next: (res) => {
-            this.comments = res;
-          },
-          error: (err) => {
-            console.error(err);
-          }
-        })
+        this.readComments();
       });
     }
   }
@@ -48,7 +41,22 @@ export class PostFullViewComponent implements OnInit {
     this._router.navigate(['/home']);
   }
 
+  readComments() : void {
+    this._commentService.readByPost(this.id).subscribe({
+      next: (res) => {
+        this.comments = res;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
   deleteComment(comment : Comment) : void {
     this.comments = this.comments.filter(c => c.id != comment.id);
+  }
+
+  addComment(comment : Comment) : void {
+    this.comments.push(comment);
   }
 }

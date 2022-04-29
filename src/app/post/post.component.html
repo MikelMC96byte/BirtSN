@@ -9,13 +9,48 @@
         <p class="card-text">{{postData.body}}</p>
     </div>
     <div class="card-footer text-muted">
-        <button class="btn btn-dark mx-1"><i class="fa-solid fa-comment"></i></button>
+        <button class="btn btn-dark mx-1" (click)="showNewComment()"><i class="fa-solid fa-comment"></i></button>
         <span *ngIf="postUser != null && loggedUsername == postUser.username">
             <button class="btn btn-dark mx-1" (click)="editPost()" ><i class="fa-solid fa-pen-to-square"></i></button>
             <button class="btn btn-dark mx-1" (click)="deletePost()"><i class="fa-solid fa-trash-can"></i></button>
         </span>
     </div>
 </div>
+<form
+    class="card text-white bg-dark mb-3"
+    #newCommentForm="ngForm" 
+    *ngIf="newCommentStatus" 
+    (submit)="createComment()"
+>
+    <div class="card-header">Nuevo comentario</div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col">
+                <textarea 
+                    type="text" 
+                    name="text"
+                    id="text" 
+                    class="form-control" 
+                    [(ngModel)]="comment.text"
+                    #text="ngModel"
+                >
+                </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success rounded-pill text-light py-1 text-center custom-fill" type="submit" >
+                    GUARDAR
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary rounded-pill text-light py-1 text-center custom-fill" (click)="cancelNewComment()" >
+                    CANCELAR
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
 
 <ng-template #disabledUser>
     <div class="card-header">

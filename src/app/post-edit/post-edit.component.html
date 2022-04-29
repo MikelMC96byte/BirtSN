@@ -1,5 +1,5 @@
 <app-navigation-bar></app-navigation-bar>
-<form (submit)="update()">
+<form #postEditForm="ngForm" (submit)="update()">
     <div class="row rounded text-light bg-dark p-3 mb-3 mx-1">
         <h5>Post</h5>
         <div class="row mb-3">

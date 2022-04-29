@@ -1,7 +1,7 @@
 <app-navigation-bar></app-navigation-bar>
 
 <div class="">
-    <form #profileEditForm (submit)="editProfile()">
+    <form #profileEditForm="ngForm" (submit)="editProfile()">
         <div class="row rounded text-light bg-dark p-3 mb-3 mx-1">
             <div class="row">
                 <h5>Perfil</h5>
