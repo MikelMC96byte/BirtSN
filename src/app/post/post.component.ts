@@ -62,6 +62,10 @@ export class PostComponent implements OnInit {
     }
   }
 
+  editPost() : void {
+    this._router.navigate(['/posts/' + this.postData.id + '/edit']);
+  }
+
   deletePost() : void {
     Swal.fire({
       title: '¿Estás seguro?',

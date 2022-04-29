@@ -9,16 +9,16 @@
         <p class="card-text">{{postData.body}}</p>
     </div>
     <div class="card-footer text-muted">
-        <button class="btn btn-dark"><i class="fa-solid fa-comment"></i></button>
+        <button class="btn btn-dark mx-1"><i class="fa-solid fa-comment"></i></button>
         <span *ngIf="postUser != null && loggedUsername == postUser.username">
-            <button class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="btn btn-dark" (click)="deletePost()"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-dark mx-1" (click)="editPost()" ><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-dark mx-1" (click)="deletePost()"><i class="fa-solid fa-trash-can"></i></button>
         </span>
     </div>
 </div>
 
 <ng-template #disabledUser>
     <div class="card-header">
-        <i>@Usuario no disponible</i>
+        <i>@Usuario no encontrado</i>
     </div>
 </ng-template>
