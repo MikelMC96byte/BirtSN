@@ -1,2 +1,3 @@
 <app-navigation-bar></app-navigation-bar>
 <app-post [postId]="id" (deletedPost)="deleteSelf($event)"></app-post>
+<app-comment *ngFor="let comment of comments" [commentId]="comment.id" (deletedComment)="deleteComment($event)"></app-comment>

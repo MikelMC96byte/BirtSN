@@ -19,6 +19,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { PostFullViewComponent } from './post-full-view/post-full-view.component';
 import { PostNewComponent } from './post-new/post-new.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { CommentNewComponent } from './comment-new/comment-new.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     ProfileEditComponent,
     PostFullViewComponent,
     PostNewComponent,
-    PostEditComponent
+    PostEditComponent,
+    CommentNewComponent
   ],
   imports: [
     BrowserModule,
