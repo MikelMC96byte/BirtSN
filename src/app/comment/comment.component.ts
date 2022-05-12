@@ -73,8 +73,8 @@ export class CommentComponent implements OnInit {
 
   update() : void {
     Swal.fire({
-      title: '¿Estás seguro?',
-      text: "¡No podrás revertir esto!",
+      title: 'Actualizar',
+      text: "¿Estás seguro de que quieres actualizar este comentario?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
