@@ -4,7 +4,6 @@ import { Login } from '../models/login';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import jwt_decode from '../../../node_modules/jwt-decode';
-import {currentRoute} from '../config/config';
 
 @Component({
   selector: 'app-login',
